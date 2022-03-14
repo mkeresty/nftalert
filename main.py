@@ -1,8 +1,5 @@
 from __future__ import print_function
 
-import asyncio
-import collections
-import aiohttp
 import json
 import discord
 import requests
