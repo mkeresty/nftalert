@@ -13,7 +13,7 @@ async def timer():
     while True:
         print('trying...')
         await get_nft(oldaddy)
-        time.sleep(120)
+        time.sleep(60)
     return()
 
 
@@ -34,7 +34,7 @@ async def get_nft(oldaddy):
     print(rep['slug'])
 
     if len(rep['primary_asset_contracts']) > 0:
-        addy= str(rep['primary_asset_contracts'][0][rep['address']])
+        addy= str(rep['primary_asset_contracts'][0]['address'])
         nft_url='https://opensea.io/collection/'+str(rep['slug'])
         slug=str(rep['slug'])
         print(addy, url)
