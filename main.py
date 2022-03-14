@@ -6,7 +6,6 @@ import aiohttp
 import json
 import discord
 import requests
-from web3 import Web3, HTTPProvider
 import time
 
 global oldaddy 
