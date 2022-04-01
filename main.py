@@ -174,7 +174,7 @@ async def get_nft(oldaddy):
 
 
 
-TOKEN ="OTUyOTk5OTY1NDk0NTA5NjE4.Yi-MYQ.acOiVBiUVPgBbjc1arWQ_6D053Y"
+TOKEN ="OTUyOTk5OTY1NDk0NTA5NjE4.Yi-MYQ.mzUT3Wnvb_7kFIqQKvjOUjJ2Lmw"
 
 client = discord.Client()
 
