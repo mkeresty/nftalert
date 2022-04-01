@@ -24,11 +24,11 @@ async def timer():
 
 async def get_sol_nft(oldsoladdy):
 
-    new_nft_url="https://public-api.solscan.io/account/transactions?account=cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ&limit=2"
+    new_nft_url="https://public-api.solscan.io/account/transactions?account=cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ&limit=3"
     response = requests.get(new_nft_url)
     response = response.json()
 
-    hash = response[1]['txHash']
+    hash = response[2]['txHash']
 
     print(hash)
 
