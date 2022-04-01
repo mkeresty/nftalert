@@ -22,40 +22,63 @@ async def timer():
     return()
 
 async def get_sol_nft(oldsoladdy):
-    new_nft_url="https://public-api.solscan.io/account/transactions?account=cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ&limit=1"
+
+    new_nft_url="https://public-api.solscan.io/account/transactions?account=cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ&limit=3"
     response = requests.get(new_nft_url)
     response = response.json()
-    hash = response[0]['txHash']
+
+
+    oldsoladdy=[]
+
+    hash = response[2]['txHash']
+
+    print(hash)
 
     if hash not in oldsoladdy:
 
         oldsoladdy.append(hash)
+
+
         hash_url = "https://public-api.solscan.io/transaction/"+hash
 
+
         hash_response = requests.get(hash_url)
+
         hash_response = hash_response.json()
-        print(hash)
+
+        #print(hash_response)
 
         if hash_response['parsedInstruction'][-1]['type'] == 'mintNft':
             nft_addy = hash_response['parsedInstruction'][-1]['params']['Mint']
+            print(nft_addy)
+
 
             meta_url = "https://api-mainnet.magiceden.dev/v2/tokens/"+nft_addy
 
+
             meta_response = requests.get(meta_url)
-            meta_response = meta_response.json()
 
-            name = meta_response['name']
+            print(meta_response.status_code)
 
-            image = meta_response['image']
+            if meta_response.status_code == 200:
+                print("true")
 
-            update = meta_response['updateAuthority']
 
-            solscan = "https://solscan.io/token/" + nft_addy
-            
-            await solnftalert(name, image, update, solscan)
+                meta_response = meta_response.json()
+
+                name = meta_response['name']
+
+                print(name)
+
+                image = meta_response['image']
+
+                update = meta_response['updateAuthority']
+
+                solscan = "https://solscan.io/token/" + nft_addy
 
         else:
             print("not mint event")
+
 
 
 async def get_nft(oldaddy):
