@@ -27,7 +27,7 @@ async def get_sol_nft(oldsoladdy):
     response = response.json()
     hash = response[0]['txHash']
 
-    if hash not in buffer:
+    if hash not in oldsoladdy:
 
         oldsoladdy.append(hash)
         hash_url = "https://public-api.solscan.io/transaction/"+hash
