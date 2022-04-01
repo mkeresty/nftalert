@@ -208,7 +208,7 @@ async def solnftalert(name, image, update, solscan):
     channel = client.get_channel(959524023446954004)
     print(channel)
     print('preparing to send alert...')
-    embed2 = discord.Embed(title = str(name), description='Update Authority: ' +str(update) + ' created!', url = str(solscan), color = 0xffd800 )
+    embed2 = discord.Embed(title = str(name)+" minted!", description='Update Authority: ' +str(update), url = str(solscan), color = 0xffd800 )
     
     print(embed2)
   
