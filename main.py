@@ -97,7 +97,7 @@ async def get_nft(oldaddy):
     jsonfy=response.json()
 
     rep = jsonfy['collections'][0]
-    print(rep)
+    #print(rep)
     print(rep['slug'])
 
     if len(rep['primary_asset_contracts']) > 0:
@@ -211,10 +211,9 @@ async def solnftalert(name, image, update, solscan):
     embed2 = discord.Embed(title = str(name), description='Update Authority: ' +str(update) + ' created!', url = str(solscan), color = 0xffd800 )
     
     print(embed2)
-    
-    file = discord.File(image, filename="image.png")
-    embed.set_image(url="attachment://image.png")
-    await channel.send(file=file, embed = embed2)
+  
+    embed2.set_image(url=image)
+    await channel.send(embed = embed2)
     return()
 
 
