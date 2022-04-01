@@ -17,6 +17,7 @@ async def timer():
     while True:
         print('trying...')
         await get_nft(oldaddy)
+        time.sleep(60)
         await get_sol_nft(oldsoladdy)
         time.sleep(60)
     return()
