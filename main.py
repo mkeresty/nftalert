@@ -27,9 +27,6 @@ async def get_sol_nft(oldsoladdy):
     response = requests.get(new_nft_url)
     response = response.json()
 
-
-    oldsoladdy=[]
-
     hash = response[2]['txHash']
 
     print(hash)
