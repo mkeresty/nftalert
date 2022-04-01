@@ -7,14 +7,55 @@ import time
 
 global oldaddy 
 
+global oldsoladdy
+
+oldsoladdy=['start', '0xold']
+
 oldaddy=['start','0xdacd61bce7ae049270a156e5f21f00ae1839d51e']
 
 async def timer():
     while True:
         print('trying...')
         await get_nft(oldaddy)
+        await get_sol_nft(oldsoladdy)
         time.sleep(60)
     return()
+
+async def get_sol_nft(oldsoladdy):
+    new_nft_url="https://public-api.solscan.io/account/transactions?account=cndyAnrLdpjq1Ssp1z8xxDsB8dxe7u4HL5Nxi2K5WXZ&limit=1"
+    response = requests.get(new_nft_url)
+    response = response.json()
+    hash = response[0]['txHash']
+
+    if hash not in buffer:
+
+        oldsoladdy.append(hash)
+        hash_url = "https://public-api.solscan.io/transaction/"+hash
+
+        hash_response = requests.get(hash_url)
+        hash_response = hash_response.json()
+        print(hash)
+
+        if hash_response['parsedInstruction'][-1]['type'] == 'mintNft':
+            nft_addy = hash_response['parsedInstruction'][-1]['params']['Mint']
+
+            meta_url = "https://api-mainnet.magiceden.dev/v2/tokens/"+nft_addy
+
+            meta_response = requests.get(meta_url)
+            meta_response = meta_response.json()
+
+            name = meta_response['name']
+
+            image = meta_response['image']
+
+            update = meta_response['updateAuthority']
+
+            solscan = "https://solscan.io/token/" + nft_addy
+            
+            await solnftalert(name, image, update, solscan)
+
+        else:
+            print("not mint event")
 
 
 async def get_nft(oldaddy):
@@ -134,6 +175,22 @@ async def nftalert(addy, nft_url, slug):
     print(embed2)
     await channel.send(embed = embed2)
     return()
+
+
+@client.event
+async def solnftalert(name, image, update, solscan):
+    channel = client.get_channel(959524023446954004)
+    print(channel)
+    print('preparing to send alert...')
+    embed2 = discord.Embed(title = str(name), description='Update Authority: ' +str(update) + ' created!', url = str(url), color = 0xffd800 )
+    
+    print(embed2)
+    
+    file = discord.File(image, filename="image.png")
+    embed.set_image(url="attachment://image.png")
+    await channel.send(file=file, embed = embed2)
+    return()
+
 
 
 @client.event
