@@ -11,7 +11,7 @@ global oldsoladdy
 
 oldsoladdy=['start', '0xold']
 
-oldaddy=['start','0xdacd61bce7ae049270a156e5f21f00ae1839d51e']
+oldaddy=['start']
 
 async def timer():
     while True:
@@ -88,7 +88,7 @@ async def get_nft(oldaddy):
 
     headers = {
         "Accept": "application/json",
-        "X-API-KEY": "15f0fad052cb41ac94e3f00df16baf8a"
+        "X-API-KEY": ""
     }
 
     response = requests.request("GET", url, headers=headers)
@@ -113,7 +113,7 @@ async def get_nft(oldaddy):
 # async def get_token(oldaddy):
 
 
-#     response = requests.get('https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=14341644&toBlock=latest&address=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f&topic0=0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9&apikey=79XW92AXXB3SF979BM1QKHU2UGNYRJHQMW')
+#     response = requests.get('https://api.etherscan.io/api?module=logs&action=getLogs&fromBlock=14341644&toBlock=latest&address=0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f&topic0=0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9&apikey=')
 #     jsonfy=response.json()
 
 #     no1= '0x0d3648bd0f6ba80134a33ba9275ac585d9d315f0ad8355cddefde31afa28d0e9'
@@ -143,7 +143,7 @@ async def get_nft(oldaddy):
 #                 return()
 
 # async def get_token_data(addy):
-#     w3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/f5f59da316084e02a53b9c8a43692a98'))
+#     w3 = Web3(Web3.HTTPProvider(''))
 
 #     addy = addy
 #     tokencontract='null'
@@ -174,13 +174,13 @@ async def get_nft(oldaddy):
 
 
 
-TOKEN ="OTUyOTk5OTY1NDk0NTA5NjE4.Yi-MYQ.mzUT3Wnvb_7kFIqQKvjOUjJ2Lmw"
+TOKEN =""
 
 client = discord.Client()
 
 # @client.event
 # async def tokenalert(token_name, token_symbol, etherscan_url):
-#     channel = client.get_channel(950842060594905108)
+#     channel = client.get_channel()
 #     print(channel)
 #     print('preparing to send alert...')
 #     embed2 = discord.Embed(title = str(token_name), description= token_symbol +': created on Uniswap!', url = str(etherscan_url), color = 0xffd800 )
@@ -191,7 +191,7 @@ client = discord.Client()
 
 @client.event
 async def nftalert(addy, nft_url, slug):
-    channel = client.get_channel(952999649659211786)
+    channel = client.get_channel()
     print(channel)
     print('preparing to send alert...')
     embed2 = discord.Embed(title = str(slug), description='NFT Contract: ' +str(addy) + ' created!', url = str(nft_url), color = 0xffd800 )
@@ -203,7 +203,7 @@ async def nftalert(addy, nft_url, slug):
 
 @client.event
 async def solnftalert(name, image, update, solscan):
-    channel = client.get_channel(959524023446954004)
+    channel = client.get_channel()
     print(channel)
     print('preparing to send alert...')
     embed2 = discord.Embed(title = str(name)+" minted!", description='Update Authority: ' +str(update), url = str(solscan), color = 0xffd800 )
